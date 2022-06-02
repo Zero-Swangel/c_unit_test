@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: 
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: build
+      run: gcc test.c libunity.a -O2 -o run -fprofile-arcs -ftest-coverage
+    - name: run
+      run: ./run
+    - name: gcov
+      run: gcov test.c
+    - name: lcov
+      run: lcov -d . -t 'Test11' -o 'test.info' -b . -c
