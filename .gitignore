@@ -1,0 +1,7 @@
+.git
+result/
+run
+test.c.gcov
+test.gcda
+test.gcno
+test.info
